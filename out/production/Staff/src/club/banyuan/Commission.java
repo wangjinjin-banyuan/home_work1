@@ -5,14 +5,14 @@ public class Commission extends Hourly {
     double commission;
 
 
-    public Commission(String eName, String eAddress, String ePhone,String socSecNumber, double rate,double com){
+    public Commission(String eName, String eAddress, String ePhone,String socSecNumber, double rate,double commission){
         super(eName, eAddress, ePhone, socSecNumber, rate);
-        this.commission =com;
+        this.commission =commission;
     }
 
 
     public void addSales(int hours,double totalSales){
-           this.totalSales=totalSales;
+           this.totalSales+=totalSales;
            super.addHours(hours);
     }
 
