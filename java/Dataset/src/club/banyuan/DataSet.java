@@ -30,11 +30,11 @@ public class DataSet  {
     }
     count++;
   }
-  public void add(Country country){
-    sum = sum + country.getMeasure();
-    Country max=(Country)maximum;
-    if (count == 0 ||max.getMeasure() < country.getMeasure()) {
-      maximum = country;
+  public void add(Measurable measurer){
+    sum = sum + measurer.getMeasure();
+    Measurable max=(Measurable)maximum;
+    if (count == 0 ||max.getMeasure() <measurer.getMeasure()) {
+      maximum = measurer;
     }
     count++;
   }
