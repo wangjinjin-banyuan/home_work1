@@ -55,10 +55,10 @@ public class Calculator {
       case 2:
         // 只有一种情况，用户输入 负数
         // TODO: complete the cases
-        if(tokens[0].equals("-")&&tokens[1].getClass().getName().equals("int")){
+        if(tokens[0].equals("-")&&isInteger(tokens[1])){
           int i=Integer.parseInt(tokens[1]);
           return -i;
-      }else if(tokens[0].equals("-")&&!(tokens[1].getClass().getName().equals("int"))){
+      }else if(tokens[0].equals("-")&&!isInteger(tokens[1])){
           throw new IllegalInputException("Illegal Argument");
       }else{
           throw new IllegalInputException("Illegal Operator");
