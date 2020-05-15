@@ -1,6 +1,6 @@
 package club.banyuan;
 
-import java.nio.file.Watchable;
+
 
 public enum Weekday {
     MONDAY("星期一",1),
@@ -19,8 +19,8 @@ public enum Weekday {
        this.weekdayName=weekdayName;
        this.weekdayNum=num;
      }
-    public static boolean isWeekDay(String weekdayName){
-         Weekday[] values = values();
+    public static boolean isWeekDay(String weekdayName) {
+        /* Weekday[] values = values();
          for(Weekday one : values){
              if(one.weekdayName.equals(weekdayName)){
                  if(one.weekdayNum<=5&&one.weekdayNum>0){
@@ -34,11 +34,15 @@ public enum Weekday {
          return false;
      }
 
-     public static boolean isHoliday(String weekdayName){
+         */
+        return !isHoliday(weekdayName);
+    }
+
+     public static boolean isHoliday(String weekdayName) {
          Weekday[] values = values();
          for(Weekday one : values){
              if(one.weekdayName.equals(weekdayName)){
-                 if(one.weekdayNum>5&&one.weekdayNum<=7){
+                 if(one.weekdayNum>SATURDAY.getWeekdayNum()&&one.weekdayNum<=SUNDAY.getWeekdayNum()){
                      return true;
                  }
                  else
@@ -64,17 +68,16 @@ public enum Weekday {
         return weekdayNum;
     }
 
-    public static void weekdayPrint(Weekday[] val){
-        for(Weekday one:val){
+    public static void weekdayPrint(){
+        for(Weekday one:Weekday.values()){
             if(Weekday.isHoliday(one.toString())){
-                System.out.println(""+one.toString()+"是假日");
+                System.out.println(one+"是假日");
             }
             if(Weekday.isWeekDay(one.toString())){
-                System.out.println(""+one.toString()+"是工作日");
+                System.out.println(one+"是工作日");
             }
         }
     }
-
 
 
 }
