@@ -44,6 +44,7 @@ public class Calculator {
 
       case 1:
         // 只有一种情况，用户输入 quit
+        //这边可能会传进空指针出现空指针异常，"quit".equalsIgnoreCase(token[0]),把字符串拿来和传进的参数比，避免空指针（下面都需要这样改）
         // TODO: complete the cases
         if(tokens[0].toLowerCase().equals("quit")){
           throw new QuitException();
