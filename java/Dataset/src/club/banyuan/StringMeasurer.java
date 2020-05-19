@@ -1,11 +1,15 @@
 package club.banyuan;
 
-public class StringMeasurer implements Measurer {
-  // TODO: 创建实现Measurer接口的StringMeasurer类。提示：measure（）应该返回字符串的长度。
+import club.banyuan.Measurer;
 
-    @Override
-    public double measure(Object anObject) {
-        String str=(String)anObject;
-        return str.length();
+public class StringMeasurer implements Measurer<String> {
+
+  @Override
+  public double measure(String anObject) {
+    if (anObject == null) {
+      return 0;
     }
+    //String string = (String) anObject;
+    return anObject.length();
+  }
 }

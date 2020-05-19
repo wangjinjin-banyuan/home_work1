@@ -1,15 +1,14 @@
 package club.banyuan;
 
-import java.util.Objects;
+import club.banyuan.Measurer;
+import club.banyuan.Rectangle;
 
-public class RectangleMeasurer implements Measurer{
-// TODO: 创建实现Measurer接口的RectangleMeasurer类。
-//  提示：RectangleMeasurer类应包含具有与接口中指定的签名相同的方法。
-//  measure()应该返回矩形的周长。
+public class RectangleMeasurer implements Measurer<Rectangle> {
 
-    @Override
-    public double measure(Object anObject) {
-        Rectangle rectangle=(Rectangle)anObject;
-        return (rectangle.width*rectangle.height);
-    }
+  @Override
+  public double measure(Rectangle anObject) {
+
+    return anObject.width * anObject.height;
+
+  }
 }

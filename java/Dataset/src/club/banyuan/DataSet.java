@@ -1,57 +1,58 @@
 package club.banyuan;
 
-import java.util.Objects;
+import club.banyuan.Measurable;
+import club.banyuan.Measurer;
 
-public class DataSet  {
-  // TODO: 定义private 实例变量
+public class DataSet<T> {
+
   private double sum;
-  private double count;
+  private int count;
   private Object maximum;
-  private Measurer measurer;
+  private Measurer<T> measurer;
 
+  public DataSet() {
+  }
 
-  public DataSet(Measurer aMeasurer) {
+  public DataSet(Measurer<T> aMeasurer) {
     sum = 0;
     count = 0;
     maximum = null;
     measurer = aMeasurer;
   }
-  public DataSet(){
-    sum = 0;
-    count = 0;
-    maximum = null;
+
+  public void add(T x) {
+    if (x instanceof Measurable) {
+      add((Measurable) x);
+    } else {
+      addByMeasurer(x);
+    }
   }
 
-  // TODO： 重载方法，使得Contry统计 DataSetTester 运行成功
-  public void add(Object x) {
+  public void addByMeasurer(T x) {
     sum = sum + measurer.measure(x);
-    if (count == 0 || measurer.measure(maximum) < measurer.measure(x)) {
+    if (count == 0 || measurer.measure((T) maximum) < measurer.measure(x)) {
       maximum = x;
     }
     count++;
   }
-  public void add(Measurable measurer){
-    sum = sum + measurer.getMeasure();
-    Measurable max=(Measurable)maximum;
-    if (count == 0 ||max.getMeasure() <measurer.getMeasure()) {
-      maximum = measurer;
+
+  public void add(Measurable measurable) {
+    sum = sum + measurable.getMeasure();
+    if (count == 0 || ((Measurable) maximum).getMeasure() < measurable.getMeasure()) {
+      maximum = measurable;
     }
     count++;
   }
 
   public double getAverage() {
-    // TODO: Check divide by zero. Compute the average value.
-    if(count==0){
+    if (count == 0) {
       return 0;
     }
-    else{
-      double averageNum=sum/count;
-      return averageNum;
-    }
+    return sum / count;
   }
 
-  public Object getMaximum() {
-    return maximum;
+  public T getMaximum() {
+    return (T)maximum;
   }
 
 
