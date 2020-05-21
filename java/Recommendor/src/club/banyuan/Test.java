@@ -18,7 +18,7 @@ public class Test {
        try {
           System.out.println(recommendor.likesBoth("张三", "复仇者联盟", "数学"));
            System.out.println(recommendor.likesBoth("张三", "复仇者联盟", "语文"));
-          // System.out.println(recommendor.likesBoth("赵六", "复仇者联盟", "语文"));
+          System.out.println(recommendor.likesBoth("赵六", "复仇者联盟", "语文"));
          System.out.println(recommendor.recommendByPerson("张三"));
            //System.out.println(recommendor.recommendByPerson("赵六"));
            System.out.println(recommendor.recommendByProject("数学"));
