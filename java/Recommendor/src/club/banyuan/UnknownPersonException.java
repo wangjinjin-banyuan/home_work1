@@ -1,23 +1,24 @@
 package club.banyuan;
 
-public class UnknownPersonException extends RuntimeException{
-    public UnknownPersonException() {
-    }
+public class UnknownPersonException extends RuntimeException {
 
-    public UnknownPersonException(String message) {
-        super(message);
-    }
+  public UnknownPersonException() {
+  }
 
-    public UnknownPersonException(String message, Throwable cause) {
-        super(message, cause);
-    }
+  public UnknownPersonException(String message) {
+    super(message);
+  }
 
-    public UnknownPersonException(Throwable cause) {
-        super(cause);
-    }
+  public UnknownPersonException(String message, Throwable cause) {
+    super(message, cause);
+  }
 
-    public UnknownPersonException(String message, Throwable cause, boolean enableSuppression,
-                                  boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
+  public UnknownPersonException(Throwable cause) {
+    super(cause);
+  }
+
+  public UnknownPersonException(String message, Throwable cause, boolean enableSuppression,
+      boolean writableStackTrace) {
+    super(message, cause, enableSuppression, writableStackTrace);
+  }
 }

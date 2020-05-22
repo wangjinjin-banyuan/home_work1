@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/java/AnimalMonitor/AnimalMonitor.iml" filepath="$PROJECT_DIR$/java/AnimalMonitor/AnimalMonitor.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/Arr/Arr.iml" filepath="$PROJECT_DIR$/java/Arr/Arr.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/Bird/Bird.iml" filepath="$PROJECT_DIR$/java/Bird/Bird.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/Dataset/Dataset.iml" filepath="$PROJECT_DIR$/java/Dataset/Dataset.iml" />
