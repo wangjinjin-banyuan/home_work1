@@ -64,7 +64,7 @@ public class Test {
     @org.junit.Test
     public void getCount() {
         AnimalMonitorImpl animalMonitorImpl = new AnimalMonitorImpl();
-        animalMonitorImpl.getCount("山地大猩猩");
+       // animalMonitorImpl.getCount("山地大猩猩");
         Assert.assertEquals(animalMonitorImpl.getCount("山地大猩猩"),14);
         Assert.assertEquals(animalMonitorImpl.getCount("大象"),24);
         Assert.assertEquals(animalMonitorImpl.getCount("水牛"),28);
@@ -111,5 +111,6 @@ public class Test {
     public void getSpotterBy() {
         AnimalMonitorImpl animalMonitorImpl = new AnimalMonitorImpl();
         Assert.assertTrue(animalMonitorImpl.getSpotterBy("水牛",0).containsAll(Arrays.asList(0,3)));
+
     }
 }

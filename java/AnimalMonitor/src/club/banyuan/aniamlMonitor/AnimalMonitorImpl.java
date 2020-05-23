@@ -1,9 +1,12 @@
-package club.banyuan;
+package club.banyuan.aniamlMonitor;
 
 import club.banyuan.AnimalMonitor;
 import club.banyuan.Sighting;
-
-import java.util.*;
+import club.banyuan.SightingFiller;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 监视不同种类动物的数量。由观察者记录目击事件。
@@ -13,16 +16,12 @@ public class AnimalMonitorImpl implements AnimalMonitor {
   // 记录所有发现的动物。
   private List<Sighting> sightings;
 
-  public List<Sighting> getSightings() {
-    return sightings;
-  }
   /**
    * 创建一个AnimalMonitor。
    */
   public AnimalMonitorImpl() {
-    this.sightings =  new SightingFiller().getSightings();
+    this.sightings = new SightingFiller().getSightings();
   }
-
 
 
   /**
@@ -30,9 +29,16 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printList() {
-    for (Sighting one : sightings) {
-      System.out.println(one.getDetails());
+    for (Sighting sighting : sightings) {
+      printSighting(sighting);
     }
+    sightings.forEach(t -> System.out.println(t.getDetails()));
+    sightings.forEach(this::printSighting);
+    sightings.forEach(Sighting::getAnimal);
+  }
+
+  private void printSighting(Sighting sighting) {
+    System.out.println(sighting.getDetails());
   }
 
   /**
@@ -42,11 +48,18 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printSightingsOf(String animal) {
-    for (Sighting one : sightings) {
-      if (one.getAnimal().equals(animal)) {
-        System.out.println(one.getDetails());
+    List<Sighting> matches = new ArrayList<>();
+    for (Sighting sighting : sightings) {
+      if (sighting.getAnimal().equals(animal)) {
+        matches.add(sighting);
       }
     }
+
+    matches.forEach(this::printSighting);
+
+    sightings.stream()
+        .filter(abc -> abc.getAnimal().equals(animal))
+        .forEach(this::printSighting);
   }
 
   /**
@@ -56,11 +69,9 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printSightingsBy(int spotter) {
-    for (Sighting one : sightings) {
-      if (one.getSpotter() == spotter) {
-        System.out.println(one.getAnimal());
-      }
-    }
+    sightings.stream()
+        .filter(t -> t.getSpotter() == spotter)
+        .forEach(this::printSighting);
   }
 
   /**
@@ -71,24 +82,15 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void printEndangered(List<String> animalNames, int dangerThreshold) {
-    int num = 0;
-    for (String name : animalNames) {
-
-      for (Sighting one : sightings) {
-        if (name.equals(one.getAnimal())) {
-          num++;
-        }
-      }
-
-      if (num > dangerThreshold) {
-        animalNames.remove(name);
-      }
-    }
-    for (String animal : animalNames) {
-      System.out.println(animal);
-    }
+    sightings.stream()
+        .collect(Collectors
+            .groupingBy(Sighting::getAnimal, Collectors.summingInt(Sighting::getCount)))
+        .forEach((k, v) -> {
+          if (v <= dangerThreshold && animalNames.contains(k)) {
+            System.out.println("濒临灭绝的动物:" + k);
+          }
+        });
   }
-
 
   /**
    * 打印在特定期间periodID内记录的所有目击事件的详细信息，并将其作为参数传递给该方法
@@ -98,14 +100,7 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> printSightingsInPeriod(int period) {
-    List<Sighting> newPeriodList=new LinkedList<>();
-    for (Sighting one : sightings){
-      if(one.getPeriod()==period){
-        newPeriodList.add(one);
-        System.out.println(one.getDetails());
-      }
-    }
-    return newPeriodList ;
+    return sightings.stream().filter(t -> t.getPeriod() == period).collect(Collectors.toList());
   }
 
   /**
@@ -117,15 +112,10 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> printSightingsOfInPeriod(int fromPeriod, int toPeriod, String animal) {
-    List<Sighting> pointPeriodAndAnimal=new LinkedList<>();
-    for(Sighting one : sightings){
-      if((one.getPeriod()>=fromPeriod&&one.getPeriod()<=toPeriod)&&(one.getAnimal().equals(animal))){
-
-          System.out.println(one.getDetails());
-          pointPeriodAndAnimal.add(one);
-      }
-    }
-    return pointPeriodAndAnimal;
+    return sightings.stream().filter(
+        t -> t.getPeriod() >= fromPeriod && t.getPeriod() <= toPeriod && t.getAnimal()
+            .equals(animal)).collect(
+        Collectors.toList());
   }
 
   /**
@@ -135,16 +125,9 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> printCounts(String animal) {
-    int num=0;
-    List<Sighting> animalGetCount=new LinkedList<>();
-    for(Sighting one :sightings){
-      if(one.getAnimal().equals(animal)){
-        num++;
-        animalGetCount.add(one);
-      }
-    }
-    System.out.println(num);
-    return animalGetCount;
+    Map<String, List<Sighting>> collect = sightings.stream()
+        .collect(Collectors.groupingBy(Sighting::getAnimal));
+    return collect.get(animal);
   }
 
   /**
@@ -155,13 +138,8 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public int getCount(String animal) {
-    int num=0;
-    for(Sighting one :sightings){
-      if(one.getAnimal().equals(animal)){
-        num+=one.getCount();
-      }
-    }
-    return num;
+    return sightings.stream().filter(t -> t.getAnimal().equals(animal)).mapToInt(Sighting::getCount)
+        .sum();
   }
 
   /**
@@ -169,7 +147,7 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public void removeZeroCounts() {
-    sightings.removeIf(one -> one.getCount() == 0);
+    sightings.removeIf(t -> t.getCount() == 0);
   }
 
   /**
@@ -181,13 +159,9 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> getSightingsInArea(String animal, int area) {
-    List<Sighting> sightAnimal=new LinkedList<>();
-    for(Sighting one : sightings){
-      if(one.getAnimal().equals(animal)&&one.getArea()==area){
-        sightAnimal.add(one);
-      }
-    }
-    return sightAnimal;
+    return sightings.stream().filter(t -> t.getAnimal().equals(animal) && t.getArea() == area)
+        .collect(
+            Collectors.toList());
   }
 
   /**
@@ -198,13 +172,8 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Sighting> getSightingsOf(String animal) {
-    List<Sighting> sightAllAnimal=new LinkedList<>();
-    for(Sighting one : sightings){
-      if(one.getAnimal().equals(animal)){
-        sightAllAnimal.add(one);
-      }
-    }
-    return sightAllAnimal;
+    return sightings.stream().filter(t -> t.getAnimal().equals(animal))
+        .collect(Collectors.toList());
   }
 
   /**
@@ -214,13 +183,9 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<String> getAnimalBy(int spotter, int period) {
-    Set<String> spotterSeeAnimal =new HashSet<>();
-    for(Sighting one : sightings){
-      if(one.getSpotter()==spotter&&one.getPeriod()==period&&one.getCount()>0){
-        spotterSeeAnimal.add(one.getAnimal());
-      }
-    }
-    return new ArrayList<>(spotterSeeAnimal);
+    return sightings.stream().filter(t -> t.getSpotter() == spotter && t.getPeriod() == period)
+        .map(Sighting::getAnimal).collect(
+            Collectors.toList());
   }
 
   /**
@@ -230,12 +195,8 @@ public class AnimalMonitorImpl implements AnimalMonitor {
    */
   @Override
   public List<Integer> getSpotterBy(String animal, int period) {
-    Set<Integer> spotter = new HashSet<>();
-    for(Sighting one : sightings){
-      if(one.getAnimal().equals(animal)&&one.getPeriod()==period){
-        spotter.add(one.getSpotter());
-      }
-    }
-    return new ArrayList<>(spotter);
+    return sightings.stream()
+        .filter(t -> t.getPeriod() == period && t.getAnimal().equals(animal))
+        .map(Sighting::getSpotter).distinct().collect(Collectors.toList());
   }
 }
