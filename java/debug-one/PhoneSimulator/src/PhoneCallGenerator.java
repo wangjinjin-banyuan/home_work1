@@ -30,9 +30,10 @@ public class PhoneCallGenerator extends Thread {
             // 呼叫开始，休眠随机生成的时间，然后结束通话
             sleep(length * 1000);
             phone.endCall(getName(), Integer.toString(counter));
+          }
             // 让其他线程有机会
             sleep(randomGenerator.nextInt(2));
-          }
+
         }
       } catch (InterruptedException e) {
       }
