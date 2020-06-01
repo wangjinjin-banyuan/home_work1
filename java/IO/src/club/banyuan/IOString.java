@@ -1,61 +1,85 @@
 package club.banyuan;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 public class IOString {
-  public static String [] loadArray(InputStream is,int[] n) throws IOException {
-    String[] strings = new String[n.length];
-    for (int i = 0; i < n.length ; i++) {
+
+  public static String[] loadArray(InputStream is, int[] n) {
+    String[] str = new String[n.length];
+    for (int i = 0; i < n.length; i++) {
       byte[] b = new byte[n[i]];
-      if(is.read(b) != -1) {
-        strings[i] = new String(b);
-      }else {
-        if(i != n.length-1){
-          throw new RuntimeException("读取失败");
+      try {
+        if (is.read(b) != i) {
+          throw new RuntimeException();
+        } else {
+          str[i] = new String(b);
         }
+      } catch (IOException e) {
+        e.printStackTrace();
       }
+
     }
-    return strings;
+    try {
+      is.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return str;
   }
 
-  public static void saveArray(OutputStream os,String [] sa){
-    try(os) {
-      for (String temp: sa) {
-        os.write(temp.getBytes());
+  public static void saveArray(OutputStream os, String[] sa) {
+    for (String s : sa) {
+      try {
+        os.write(s.getBytes());
+      } catch (IOException e) {
+        e.printStackTrace();
       }
+    }
+    try {
+      os.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
-  public static void mulTable(String path,int n) {
+  public static void writeTables(String path, int n) {
     File file = new File(path);
-    if(file.exists() && file.isFile()){
-      try(OutputStream outputStream = new FileOutputStream(file)) {
-
-        for (int i = 1;i <=n;i++){
-          for(int j = 1;j <=n;j++){
-            String string = Integer.toString(Integer.parseInt((i*j)+"  "));
-            outputStream.write(string.getBytes());
-            if(j == n){
-              outputStream.write("\n".getBytes());
-            }
+    if (file.isFile() && file.exists()) {
+      try {
+        FileOutputStream outFile = new FileOutputStream(file);
+        for (int i = 1; i <= n; i++) {
+          for (int j = 1; j <= n; j++) {
+            String str = i * j + " ";
+            outFile.write(str.getBytes());
           }
+          outFile.write("\n".getBytes());
         }
+        outFile.close();
       } catch (IOException e) {
         e.printStackTrace();
       }
-    }else {
-      throw new IllegalArgumentException("path不正确");
+    } else {
+      System.out.println("原路径不是文件或不存在");
     }
   }
 
   public static void main(String[] args) {
-    mulTable("./1.txt",3);
+//    writeTables("test.txt", 10);
+    File file = new File("test.txt");
+    try {
+      int n[] = {1,2,3,4,9};
+      InputStream is = new FileInputStream(file);
+      System.out.println(Arrays.toString(loadArray(is, n)));
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
   }
+
 }
