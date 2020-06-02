@@ -12,8 +12,10 @@
       <module fileurl="file://$PROJECT_DIR$/java/IO/IO.iml" filepath="$PROJECT_DIR$/java/IO/IO.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/IO_CMD/IO_CMD.iml" filepath="$PROJECT_DIR$/java/IO_CMD/IO_CMD.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/List/List.iml" filepath="$PROJECT_DIR$/java/List/List.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java/PhilosopherDeadLock/MinuteCount/MinuteCount.iml" filepath="$PROJECT_DIR$/java/PhilosopherDeadLock/MinuteCount/MinuteCount.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/Pair/Pair.iml" filepath="$PROJECT_DIR$/java/Pair/Pair.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/Pairs/Pairs.iml" filepath="$PROJECT_DIR$/java/Pairs/Pairs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java/PhilosopherDeadLock/PhilosopherDeadLock.iml" filepath="$PROJECT_DIR$/java/PhilosopherDeadLock/PhilosopherDeadLock.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/debug-one/PhoneSimulator/PhoneSimulator.iml" filepath="$PROJECT_DIR$/java/debug-one/PhoneSimulator/PhoneSimulator.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/Point/Point.iml" filepath="$PROJECT_DIR$/java/Point/Point.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/Recommendor/Recommendor.iml" filepath="$PROJECT_DIR$/java/Recommendor/Recommendor.iml" />
@@ -26,6 +28,8 @@
       <module fileurl="file://$PROJECT_DIR$/java/debug-one/debug-one.iml" filepath="$PROJECT_DIR$/java/debug-one/debug-one.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/home_work1.iml" filepath="$PROJECT_DIR$/java/home_work1.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/student/student.iml" filepath="$PROJECT_DIR$/java/student/student.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java/udp/udp.iml" filepath="$PROJECT_DIR$/java/udp/udp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java/CaesarCipher/vsm/vsm.iml" filepath="$PROJECT_DIR$/java/CaesarCipher/vsm/vsm.iml" />
     </modules>
   </component>
 </project>
