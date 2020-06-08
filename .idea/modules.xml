@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/java/Arr/Arr.iml" filepath="$PROJECT_DIR$/java/Arr/Arr.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/Bird/Bird.iml" filepath="$PROJECT_DIR$/java/Bird/Bird.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/CaesarCipher/CaesarCipher.iml" filepath="$PROJECT_DIR$/java/CaesarCipher/CaesarCipher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java/Calculation1/Calculation1.iml" filepath="$PROJECT_DIR$/java/Calculation1/Calculation1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java/Calculation1/Consolidate/Consolidate.iml" filepath="$PROJECT_DIR$/java/Calculation1/Consolidate/Consolidate.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/Dataset/Dataset.iml" filepath="$PROJECT_DIR$/java/Dataset/Dataset.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/udp/Tcp/Decode/Decode.iml" filepath="$PROJECT_DIR$/java/udp/Tcp/Decode/Decode.iml" />
       <module fileurl="file://$PROJECT_DIR$/java/Exception/Exception.iml" filepath="$PROJECT_DIR$/java/Exception/Exception.iml" />
