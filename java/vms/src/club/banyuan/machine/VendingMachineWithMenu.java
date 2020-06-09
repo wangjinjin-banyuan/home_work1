@@ -6,6 +6,8 @@ import club.banyuan.menu.Menu;
 import club.banyuan.menu.MenuFlow;
 import club.banyuan.menu.MenuNode;
 import club.banyuan.menu.MenuType;
+import club.banyuan.socket.Server;
+import java.security.Provider.Service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -479,7 +481,8 @@ public class VendingMachineWithMenu implements MenuFlow<FlowStatus> {
     Scanner scanner = new Scanner(System.in);
     System.out.println();
     System.out.print("Your choice:");
-    String userInput = scanner.next();
+    //String userInput = scanner.next();
+    String userInput = Server.input;
     boolean testResult = inputValidate.test(userInput);
     if (!testResult) {
       System.out.println("Invalid choice!");
