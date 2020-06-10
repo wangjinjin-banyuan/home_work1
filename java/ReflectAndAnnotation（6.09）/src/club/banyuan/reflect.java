@@ -3,15 +3,16 @@ package club.banyuan;
 import java.lang.reflect.Field;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 public class reflect {
 
   public static void printInfo(Object object) {
     Class aClass = object.getClass();
-    Method[] methods = aClass.getMethods();
+    Method[] methods = aClass.getDeclaredMethods();
     Sort(methods, methods.length);
 
-    Field[] field = aClass.getFields();
+    Field[] field = aClass.getDeclaredFields();
     Sort(field, field.length);
 
     for (Method m : methods) {
