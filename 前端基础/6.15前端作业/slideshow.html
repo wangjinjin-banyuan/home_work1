@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        * {
+         padding: 0;
+          margin: 0;
+          }
+        .container {
+            width: 500px;
+            height: 300px;
+            margin: 100px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        ul{
+            width: 500%;
+            list-style: none;
+            
+            animation: imgMove 5s linear infinite ;
+        }
+
+        /* ul:hover{
+          animation-play-state: paused;
+        } */
+
+        li {
+         width: 500px;
+         float: left;
+         }
+         img{
+             width: 100%;
+         }
+             @keyframes imgMove {
+            0% {
+            transform: translateX(0px);
+             }
+            100%{
+             transform: translateX(-2000px);
+             }
+            }
+         
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <ul>
+            <li><img src="/Users/edz/Desktop/1.jpg"> </li>
+            <li><img src="/Users/edz/Desktop/2.jpg"></li>
+            <li><img src="/Users/edz/Desktop/3.jpg"></li>
+            <li><img src="/Users/edz/Desktop/4.jpg"></li>
+            <li><img src="/Users/edz/Desktop/1.jpg"> </li>
+        </ul>
+    </div>
+
+</body>
+
+</html>
