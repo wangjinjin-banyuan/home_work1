@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>百度一下，你就知道</title>
+    <style>
+      /* .div1{
+         float: left;
+         
+     }  */
+     ul{
+        position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 100;
+            height: 60px;
+            padding-left: 24px;
+            margin: 0;
+            font-size: 0;
+     }
+     ol{
+        position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 100;
+            height: 60px;
+            padding-right: 24px;
+            float: right;
+            font-size: 0;
+     }
+     li{
+         
+         list-style: none;
+         margin-right: 31px;
+         margin-top: 19px;
+         display: block;
+         position: relative;
+         float: left;
+         height: 23px;
+     }
+     a{
+         text-decoration: none;
+         
+         font-size: 13px;
+         line-height: 23px;
+     }
+        a:link{
+           color:black;
+           
+       }
+        a:visited{
+            color:black;
+            }
+        a:hover{
+            color:blue;
+        }
+       a:active{
+           color:blue;
+       } 
+     
+     .div2{
+        float: right;
+        
+     }
+     .div2 .a1 {
+            margin-left: 32px;
+            margin-top: 19px;
+            display: inline-block;
+            position: relative;
+            vertical-align: top;
+            cursor: pointer;
+            color: #f63051;
+            font-size: 13px;
+            line-height: 23px;
+            font-family: "PingFang SC", Arial,
+        }
+
+        .div2 .a2 {
+            margin-left: 32px;
+            margin-top: 19px;
+            display: inline-block;
+            position: relative;
+            vertical-align: top;
+            cursor: pointer;
+            color: #222;
+            font-style: normal;
+            font-variant-ligatures: normal;
+            font-variant-caps: normal;
+            font-variant-numeric: normal;
+            font-variant-east-asian: normal;
+            font-weight: normal;
+            font-stretch: normal;
+            font-size: 13px;
+            line-height: 23px;
+            font-family: "PingFang SC", Arial, "Microsoft YaHei", sans-serif;
+        }
+        .div2 .a2:hover{
+            color: blue;
+        }
+        .div2 .a1:hover{
+            color: blue;
+        }
+
+        .div2 .a3 {
+            display: inline-block;
+            margin-top: 18px;
+            margin-left: 32px;
+            font-size: 13px;
+            background-color: #4e71f2;
+            height: 24px;
+            width: 48px;
+            line-height: 24px;
+            color: #fff !important;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .search{
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 100px );
+    text-align: center;
+}
+
+/* 居中 */
+.search-container{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.search-container img{
+    width: 270px;
+    height: 129px;
+}
+
+.search-input{
+    height: 40px;
+    width: 450px;
+    border-radius: 5px 0px 0px 5px;
+    box-shadow: none;
+    border: 2px solid #4E71F2;
+    border-right:none;
+    display: block;
+    float: left;
+    outline: none;
+}
+
+.search-button{
+    height: 44px;
+    width: 100px;
+    border-radius: 0px 5px 5px 0px;
+    border: 2px solid #4E71F2;
+    background-color: #4E71F2;
+    color:white;
+    font-size: 16px;
+}
+
+
+    </style>
+
+
+
+    </head>
+    <body>
+        <div class="div1">
+            <ul>
+                <li><a href="" >新闻</a></li>
+                <li><a href="" >hao123</a></li>  
+                <li><a href="" >地图</a></li>  
+                <li><a href="" >视频</a></li>
+                <li><a href="" >贴吧</a></li>  
+                <li> <a href="" >学术</a></li>  
+                  <li><a href="" >更多</a></li>
+              </ul>
+        </div>
+       
+        <div class="div2">
+            <ol>
+                <a href="" class="a1">抗击肺炎</a>
+                <span class="a2">设置</span>
+                <a href="" class="a3">登录</a>
+
+            </ol>
+        </div>
+        <div class="search">
+            <div class="search-container">
+                <img src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" alt="logo"/>
+                <div>
+                    <input class="search-input" type="text"/>
+                    <button class="search-button">百度一下</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
