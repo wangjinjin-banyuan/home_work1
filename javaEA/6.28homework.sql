@@ -331,22 +331,88 @@ VALUES (1, 700, 1200),
        (5, 3001, 9999);
 
 -- 取得每个部门最高薪水的人员名称
-select ename from emp group by deptno
+select ename,deptno from emp 
+where emp.sal in (select max(sal) from emp group by deptno) 
+order by deptno;
 
 -- 哪些人的薪水在部门的平均薪水之上
--- 取得部门中(所有人)平均薪水的等级
+select a.* from emp a where a.sal > 
+(select avg(b.sal) from emp b 
+where a.deptno = b.deptno) order by deptno;
+
 -- 取得部门中(所有人)薪水的平均等级
+select b.deptno,avg(b.grade) from
+(select a.sal,a.deptno,s.grade 
+ from emp a inner join salgrade s 
+ on a.sal between s.losal and s.hisal) b
+group by b.deptno;
+
 -- 取得平均薪水最高的部门的编号
+select deptno from emp group by deptno order by avg(sal) desc limit 1;
+
 -- 求平均薪水的等级最高的部门的部门名称
+select dname from 
+(select deptno from emp group by deptno order by avg(sal) desc limit 1) a
+inner join dept b on a.deptno = b.deptno;
+
 -- 取得比普通员工的最高薪水还要高的领导人姓名
+select * from emp 
+where empno in (select mgr from emp) and sal >
+(select max(a.sal) from emp a 
+where a.empno not in(select mgr from emp where mgr is not null));
+
+
 -- 取得每个薪水等级有多少员工
+select b.grade,count(*) from 
+(select a.sal,s.grade 
+from emp a 
+inner join salgrade s 
+on a.sal between s.losal and s.hisal) b
+group by b.grade;
+
 -- 列出受雇日期早于其直接上级领导的所有员工编号，姓名、部门名称
+select empno,ename from emp a 
+where hiredate>(select hiredate from emp where empno=a.mgr);
+
 -- 列出部门名称和这些员工信息同时列出那些没有员工的部门
+select dept.dname,e.* from dept left join emp e on dept.deptno = e.deptno;
+
 -- 列出至少有五个员工的部门详细信息
+select dept.* from dept where dept.deptno 
+in(select emp.deptno d from dept inner join emp on emp.deptno=dept.deptno group by emp.deptno having count(*)>=5);
+
+
 -- 列出所有“CLERK”(办事员)的姓名及其部门名称，部门人数
+select ename,dname,a.count from emp,dept,(select deptno,count(*) as count from emp group by deptno) a
+where emp.deptno = dept.deptno and job = 'CLERK' and emp.deptno = a.deptno;
+
 -- 列出最低薪金大于1500的各种工作及从事此工作的全部雇员人数
+select job,count(*) from emp 
+group by job having min(sal) > 1500;
+
 -- 列出部门在“SALES”<销售部>工作的姓名
+select e.ename,d.* from emp e, dept d 
+where e.deptno = d.deptno and d.dname = 'SALES';
+
+
 -- 列出薪金高于公司平均薪金的所有员工、所在的部门、上级领导、雇员的工资等级
+select a.ename,b.dname,c.ename mgr_name,d.grade
+from emp a,dept b,emp c,salgrade d
+where a.deptno=b.deptno and
+a.mgr=c.empno and
+a.sal between d.losal and d.hisal
+and a.sal>(select avg(sal) from emp);
+
 -- 列出所有与“SCOTT”从事相同工作的所有员工及部门名称
+select e.*,d.dname
+from emp e,dept d
+where e.deptno=d.deptno
+and e.job=(select job from emp where ename='SCOTT')
+and e.ename <> 'SCOTT';
+
 -- 列出每个部门工作的员工数量，平均工资、平均服务期限
+select deptno,count(*), avg(sal), avg(datediff('2020-06-28',emp.hiredate)) 
+from emp group by deptno;
+
 -- 列出各个部门MANAGER的最低薪金
+select deptno,min(sal) from emp where job = 'MANAGER' group by deptno;
