@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="js/jquery-1.8.2.min.js"></script>
+  <script language="JavaScript">
+    $(function () {
+      $("#submitBtn").click(function(){
+        var username = $("#username").val();
+        $("#loginForm").submit();
+      });
+
+    });
+  </script>
+</head>
+<body>
+<a href="login.do?username=ccc">登录</a>
+<br/>
+<h1>
+  <a href="login2.do?username=aaa">登录2</a>
+</h1>
+<form action="login2.do" id="loginForm" method="post">
+  用户名： <input type="text" name="username" id="username"/>
+  <br/>
+  <input type="button" id="submitBtn" value="提交"/>
+</form>
+
+</body>
+</html>

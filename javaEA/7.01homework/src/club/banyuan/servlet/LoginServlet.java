@@ -34,23 +34,29 @@ public class LoginServlet extends HttpServlet {
       UserDao userDao = new UserDaoImpl(JdbcUtils.getConnection());
       User user = userDao.getLoginUser(loginName,password);
       if(user!=null){
-        flag=true;
+        //response.sendRedirect("Success.html");
+        //response.sendRedirect("index.jsp");
+        request.getRequestDispatcher("index.jsp").forward(request,response);
+      }else{
+        //response.sendRedirect("Faile.html");
       }
 
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
 
-    response.setCharacterEncoding("utf-8");
-    PrintWriter writer = response.getWriter();
-    writer.println("<html>");
-    writer.println("<meta charset='utf-8'/>");
-    writer.println("<body>");
-    writer.println(flag==true?"登陆成功":"登陆失败");
-    writer.println("</body>");
-    writer.println("</html>");
-    writer.flush();
-    writer.close();
+
+
+//    response.setCharacterEncoding("utf-8");
+//    PrintWriter writer = response.getWriter();
+//    writer.println("<html>");
+//    writer.println("<meta charset='utf-8'/>");
+//    writer.println("<body>");
+//    writer.println(flag==true?"登陆成功":"登陆失败");
+//    writer.println("</body>");
+//    writer.println("</html>");
+//    writer.flush();
+//    writer.close();
   }
 
   protected void doGet(HttpServletRequest request,

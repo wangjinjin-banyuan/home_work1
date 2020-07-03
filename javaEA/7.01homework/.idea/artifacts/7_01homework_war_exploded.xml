@@ -6,6 +6,7 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="7.01homework" />
+          <element id="library" level="project" name="jquery-1.8.2.min" />
         </element>
         <element id="directory" name="lib">
           <element id="file-copy" path="$USER_HOME$/Downloads/mysql-connector-java-8.0.20.jar" />
