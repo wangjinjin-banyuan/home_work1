@@ -16,4 +16,10 @@ public class ProductServiceImpl implements ProductService {
     return productDao.getProductByName(proName);
 
   }
+
+  @Override
+  public Product getProductById(Integer id) throws Exception {
+    ProductDao productDao = new ProductDaoImpl(JdbcUtils.getConnection());
+    return productDao.getProductById(id);
+  }
 }

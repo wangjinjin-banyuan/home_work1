@@ -24,7 +24,7 @@ public class SearchServlet extends HttpServlet {
       List<Product> productByName = productService.getProductByName(search);
       System.out.println(productByName.size());
       if (productByName.size() != 0){
-        request.getRequestDispatcher("Product.html").forward(request,response);
+        request.getRequestDispatcher("categoteryList.jsp").forward(request,response);
         }
 
 
