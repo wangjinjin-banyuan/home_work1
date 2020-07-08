@@ -1,10 +1,8 @@
 package club.banyuan.controller;
 
 import club.banyuan.entity.Administrator;
-import club.banyuan.entity.User;
+import club.banyuan.service.AdminService;
 import club.banyuan.service.Impl.AdminServiceImpl;
-import club.banyuan.service.Impl.UserServiceImpl;
-import club.banyuan.service.UserService;
 import java.io.IOException;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
@@ -15,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebServlet(name = "AdminServlet",urlPatterns = "/adminLogin.do")
-public class AdminServlet extends HttpServlet {
+public class AdminLoginServlet extends HttpServlet {
 
   protected void doPost(HttpServletRequest request,
       HttpServletResponse response)
@@ -26,13 +24,13 @@ public class AdminServlet extends HttpServlet {
 //        格式验证
 
 //        调用service处理登录请求
-    Administrator adminService = new AdminServiceImpl();
+    AdminService adminService = new AdminServiceImpl();
     try {
-      Administrator admin = adminService.login(adminName,password);
+      Administrator admin = adminService.login(loginName,password);
       if(admin!=null){
         HttpSession session =request.getSession();
         session.setAttribute("admin",admin);
-        request.getRequestDispatcher(".jsp").forward(request,response);
+        request.getRequestDispatcher("admin.jsp").forward(request,response);
         return ;
       }
     } catch (SQLException throwables) {
@@ -40,7 +38,7 @@ public class AdminServlet extends HttpServlet {
     }
     request.getRequestDispatcher("adminLogin.html").forward(request,response);
   }
-  }
+
 
   protected void doGet(HttpServletRequest request,
       HttpServletResponse response)
