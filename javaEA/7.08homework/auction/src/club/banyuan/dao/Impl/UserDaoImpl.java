@@ -22,7 +22,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
     @Override
     public User getLoginUser(String loginName, String pwd) {
-        String sql = "select * from user where loginName=? and password=?";
+        String sql = "select * from user where loginName=? and u_password=?";
         ResultSet rs = executeQuery(sql,new Object[]{loginName,pwd});
         User user = null;
         try {

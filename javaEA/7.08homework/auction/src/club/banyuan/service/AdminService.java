@@ -5,5 +5,5 @@ import club.banyuan.entity.User;
 import java.sql.SQLException;
 
 public interface AdminService {
-  public Administrator login(String username, String password) throws SQLException;
+  public Administrator login(String adminName, String password) throws SQLException;
 }

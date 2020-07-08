@@ -18,15 +18,18 @@ public class AdminLoginServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request,
       HttpServletResponse response)
       throws ServletException, IOException {
-    String loginName = request.getParameter("loginName");
-    String password = request.getParameter("password");
+
+    String adminName = request.getParameter("adminName");
+    String password = request.getParameter("a_password");
+
+
 
 //        格式验证
 
 //        调用service处理登录请求
     AdminService adminService = new AdminServiceImpl();
     try {
-      Administrator admin = adminService.login(loginName,password);
+      Administrator admin = adminService.login(adminName,password);
       if(admin!=null){
         HttpSession session =request.getSession();
         session.setAttribute("admin",admin);
@@ -36,7 +39,7 @@ public class AdminLoginServlet extends HttpServlet {
     } catch (SQLException throwables) {
       throwables.printStackTrace();
     }
-    request.getRequestDispatcher("adminLogin.html").forward(request,response);
+    request.getRequestDispatcher("adminLogin.jsp").forward(request,response);
   }
 
 

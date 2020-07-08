@@ -13,9 +13,9 @@ public class AdminDaoImpl extends BaseDaoImpl implements AdminDao {
   }
 
   @Override
-  public Administrator getLoginAdmin(String loginName, String pwd) {
+  public Administrator getLoginAdmin(String adminName, String pwd) {
     String sql = "select * from Administrator where adminName=? and a_password=?";
-    ResultSet rs = executeQuery(sql,new Object[]{loginName,pwd});
+    ResultSet rs = executeQuery(sql,new Object[]{adminName,pwd});
     Administrator admin = null;
     try {
       if(rs.next()){

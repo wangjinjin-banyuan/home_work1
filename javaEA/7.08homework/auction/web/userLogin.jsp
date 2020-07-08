@@ -23,12 +23,12 @@
             <p><img src="images/img1.jpg" width="443" height="314" alt="" /></p>
         </div>
         <div class="sidebarg">
-            <form action="" method="post" target='_blank'>
+            <form action="login.do" method="post" target='_blank'>
                 <div class="login">
                     <dl>
                         <dt class="blues">用户登陆</dt>
-                        <dd><label for="name">用户名：</label><input type="text" id="loginName" class="inputh" value="常用邮箱" id="name"/></dd>
-                        <dd><label for="password">密 码：</label><input type="text" id="password" class="inputh" value="密码" id="password"/></dd>
+                        <dd><label for="name">用户名：</label><input type="text" name="loginName" class="inputh" value="常用邮箱" id="name"/></dd>
+                        <dd><label for="password">密 码：</label><input type="text" name="u_password" class="inputh" value="密码" id="password"/></dd>
                         <dd>
                             <label class="lf" for="passwords">验证码：</label>
                             <input type="text" class="inputh inputs lf" value="验证码" id="passwords"/>
@@ -36,7 +36,7 @@
                             <span class="blues lf"><a href="" title="">看不清</a></span>
                         </dd>
                         <dd>
-                            <input name=""  type="checkbox" id="rem_u"  />
+                            <input name="autoLogin"  type="checkbox" id="rem_u"  />
                             <span for="rem_u">下次自动登录</span>
                         </dd>
                         <dd class="buttom">

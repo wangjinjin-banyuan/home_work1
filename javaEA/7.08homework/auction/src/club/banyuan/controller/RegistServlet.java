@@ -16,7 +16,7 @@ public class RegistServlet extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-
+    System.out.println(1);
     User user = new User();
     user.setLoginName(request.getParameter("loginName"));
     user.setPassword(request.getParameter("u_password"));
@@ -25,18 +25,22 @@ public class RegistServlet extends HttpServlet {
     user.setMobile(request.getParameter("mobile"));
     user.setAddress(request.getParameter("address"));
     user.setPostcode(request.getParameter("postcode"));
-
+    String agree = request.getParameter("agree");
+    System.out.println(agree);
+    String loginName =request.getParameter("loginName");
+    System.out.println(loginName);
     UserService userService = new UserServiceImpl();
     try {
-
-        int id = userService.add(user);
-        if (id > 0) {
-          request.getRequestDispatcher("userLogin.jsp").forward(request, response);
-          System.out.println(id);
-        } else {
-          request.getRequestDispatcher("userRegist.jsp").forward(request, response);
-        }
-
+          if(agree!=null){
+            System.out.println(1);
+            int id = userService.add(user);
+            if (id > 0) {
+              request.getRequestDispatcher("userLogin.jsp").forward(request, response);
+              System.out.println(id);
+            } else {
+              request.getRequestDispatcher("userRegist.jsp").forward(request, response);
+            }
+          }
 
     } catch (SQLException throwables) {
       throwables.printStackTrace();

@@ -122,7 +122,7 @@
             <li>2010-01-20 12:30:30</li>
             <li>2010-09-08 12:30:30</li>
             <li>2,000</li>
-            <li class="borderno red"><a href="#">竞拍</a></li>
+            <li class="borderno red"><a href="auction.jsp">竞拍</a></li>
         </ul>
         <div class="page">
             <a href="#" title="">首页</a>
