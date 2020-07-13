@@ -38,13 +38,13 @@ public class LoginServlet extends HttpServlet {
             if(user!=null){
                 HttpSession session =request.getSession();
                 session.setAttribute("user",user);
-                request.getRequestDispatcher("product.jsp").forward(request,response);
+                request.getRequestDispatcher("index.jsp").forward(request,response);
                 return ;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        request.getRequestDispatcher("Login.html").forward(request,response);
+        request.getRequestDispatcher("userLogin.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

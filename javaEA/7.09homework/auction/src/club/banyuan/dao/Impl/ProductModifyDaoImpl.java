@@ -19,9 +19,9 @@ public class ProductModifyDaoImpl extends BaseDaoImpl implements ProductModifyDa
 
   @Override
   public int modifyProduct(Product product) {
-    String sql= "update product set p_name=？,p_describle=？,p_startTime=？,p_endTime=？,p_price=？where p_id=?";
+    String sql= "update product set p_name=？,p_describle=？,p_startTime=？,p_endTime=？,p_startingPrice=?,p_floorPrice=? where p_id=?";
     Object[] params = new Object[]{product.getP_name()
-        ,product.getP_describle(),product.getP_startTime(),product.getP_endTime(),product.getPrice(),product.getP_id()};
+        ,product.getP_describle(),product.getP_startTime(),product.getP_endTime(),product.getStartingPrice(),product.getFloorPrice(),product.getP_id()};
     int i= executeUpdate(sql,params);
 
     return i;
@@ -29,9 +29,9 @@ public class ProductModifyDaoImpl extends BaseDaoImpl implements ProductModifyDa
 
   @Override
   public int insertProduct(Product product) {
-    String sql ="insert into product * values (null,?,?,?,?,?)";
+    String sql ="insert into product * values (null,?,?,?,?,?,?)";
     Object[] params = new Object[]{product.getP_name()
-        ,product.getP_describle(),product.getP_startTime(),product.getP_endTime(),product.getPrice()};
+        ,product.getP_describle(),product.getP_startTime(),product.getP_endTime(),product.getStartingPrice(),product.getFloorPrice()};
     int i= executeUpdate(sql,params);
 
     return i;

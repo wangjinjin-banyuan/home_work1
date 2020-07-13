@@ -1,4 +1,5 @@
-<%--
+<%@ page import="club.banyuan.entity.Product" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: edz
   Date: 2020/7/8
@@ -44,86 +45,103 @@
             <li>起拍价</li>
             <li class="borderno">操作</li>
         </ul>
-        <ul class="rows">
-            <li><a href="国书" title="">国书</a></li>
-            <li class="list-wd">明国藏书</li>
-            <li>2010-01-20 12:30:30</li>
-            <li>2010-09-08 12:30:30</li>
-            <li>2,000</li>
-            <li class="borderno red"><a href="#">竞拍</a></li>
-        </ul>
-        <ul class="rows even">
-            <li><a href="国书" title="">国书</a></li>
-            <li class="list-wd">明国藏书</li>
-            <li>2010-01-20 12:30:30</li>
-            <li>2010-09-08 12:30:30</li>
-            <li>2,000</li>
-            <li class="borderno red"><a href="#">竞拍</a></li>
-        </ul>
-        <ul class="rows">
-            <li><a href="国书" title="">国书</a></li>
-            <li class="list-wd">明国藏书</li>
-            <li>2010-01-20 12:30:30</li>
-            <li>2010-09-08 12:30:30</li>
-            <li>2,000</li>
-            <li class="borderno red"><a href="#">竞拍</a></li>
-        </ul>
-        <ul class="rows even">
-            <li><a href="国书" title="">国书</a></li>
-            <li class="list-wd">明国藏书</li>
-            <li>2010-01-20 12:30:30</li>
-            <li>2010-09-08 12:30:30</li>
-            <li>2,000</li>
-            <li class="borderno red"><a href="#">竞拍</a></li>
-        </ul>
-        <ul class="rows">
-            <li><a href="国书" title="">国书</a></li>
-            <li class="list-wd">明国藏书</li>
-            <li>2010-01-20 12:30:30</li>
-            <li>2010-09-08 12:30:30</li>
-            <li>2,000</li>
-            <li class="borderno red"><a href="#">竞拍</a></li>
-        </ul>
-        <ul class="rows even">
-            <li><a href="国书" title="">国书</a></li>
-            <li class="list-wd">明国藏书</li>
-            <li>2010-01-20 12:30:30</li>
-            <li>2010-09-08 12:30:30</li>
-            <li>2,000</li>
-            <li class="borderno red"><a href="#">竞拍</a></li>
-        </ul>
-        <ul class="rows">
-            <li><a href="国书" title="">国书</a></li>
-            <li class="list-wd">明国藏书</li>
-            <li>2010-01-20 12:30:30</li>
-            <li>2010-09-08 12:30:30</li>
-            <li>2,000</li>
-            <li class="borderno red"><a href="#">竞拍</a></li>
-        </ul>
-        <ul class="rows even">
-            <li><a href="国书" title="">国书</a></li>
-            <li class="list-wd">明国藏书</li>
-            <li>2010-01-20 12:30:30</li>
-            <li>2010-09-08 12:30:30</li>
-            <li>2,000</li>
-            <li class="borderno red"><a href="#">竞拍</a></li>
-        </ul>
-        <ul class="rows">
-            <li><a href="国书" title="">国书</a></li>
-            <li class="list-wd">明国藏书</li>
-            <li>2010-01-20 12:30:30</li>
-            <li>2010-09-08 12:30:30</li>
-            <li>2,000</li>
-            <li class="borderno red"><a href="#">竞拍</a></li>
-        </ul>
-        <ul class="rows even">
-            <li><a href="国书" title="">国书</a></li>
-            <li class="list-wd">明国藏书</li>
-            <li>2010-01-20 12:30:30</li>
-            <li>2010-09-08 12:30:30</li>
-            <li>2,000</li>
-            <li class="borderno red"><a href="auction.jsp">竞拍</a></li>
-        </ul>
+        <%
+
+            Object object =session.getAttribute("productList");
+            List<Product> productList = (List<Product>) object;
+            for (Product product : productList) {
+                out.print("<ul class=\"rows\">\n"
+                        + "            <li><a href=\"国书\" title=\"\">" +product.getP_name()+ "</a></li>\n"
+                        + "            <li class=\"list-wd\">" + product.getP_describle()
+                        + "</li>\n"
+                        + "            <li>" + product.getP_startTime() + "</li>\n"
+                        + "            <li>" + product.getP_endTime() + "</li>\n"
+                        + "            <li>" + product.getStartingPrice()+ "</li>\n"
+                        + "            <li class=\"borderno red\"><a href=\"#\">竞拍</a></li>\n"
+                        + "        </ul>");
+            }
+
+        %>
+<%--        <ul class="rows">--%>
+<%--            <li><a href="国书" title="">国书</a></li>--%>
+<%--            <li class="list-wd">明国藏书</li>--%>
+<%--            <li>2010-01-20 12:30:30</li>--%>
+<%--            <li>2010-09-08 12:30:30</li>--%>
+<%--            <li>2,000</li>--%>
+<%--            <li class="borderno red"><a href="#">竞拍</a></li>--%>
+<%--        </ul>--%>
+<%--        <ul class="rows even">--%>
+<%--            <li><a href="国书" title="">国书</a></li>--%>
+<%--            <li class="list-wd">明国藏书</li>--%>
+<%--            <li>2010-01-20 12:30:30</li>--%>
+<%--            <li>2010-09-08 12:30:30</li>--%>
+<%--            <li>2,000</li>--%>
+<%--            <li class="borderno red"><a href="#">竞拍</a></li>--%>
+<%--        </ul>--%>
+<%--        <ul class="rows">--%>
+<%--            <li><a href="国书" title="">国书</a></li>--%>
+<%--            <li class="list-wd">明国藏书</li>--%>
+<%--            <li>2010-01-20 12:30:30</li>--%>
+<%--            <li>2010-09-08 12:30:30</li>--%>
+<%--            <li>2,000</li>--%>
+<%--            <li class="borderno red"><a href="#">竞拍</a></li>--%>
+<%--        </ul>--%>
+<%--        <ul class="rows even">--%>
+<%--            <li><a href="国书" title="">国书</a></li>--%>
+<%--            <li class="list-wd">明国藏书</li>--%>
+<%--            <li>2010-01-20 12:30:30</li>--%>
+<%--            <li>2010-09-08 12:30:30</li>--%>
+<%--            <li>2,000</li>--%>
+<%--            <li class="borderno red"><a href="#">竞拍</a></li>--%>
+<%--        </ul>--%>
+<%--        <ul class="rows">--%>
+<%--            <li><a href="国书" title="">国书</a></li>--%>
+<%--            <li class="list-wd">明国藏书</li>--%>
+<%--            <li>2010-01-20 12:30:30</li>--%>
+<%--            <li>2010-09-08 12:30:30</li>--%>
+<%--            <li>2,000</li>--%>
+<%--            <li class="borderno red"><a href="#">竞拍</a></li>--%>
+<%--        </ul>--%>
+<%--        <ul class="rows even">--%>
+<%--            <li><a href="国书" title="">国书</a></li>--%>
+<%--            <li class="list-wd">明国藏书</li>--%>
+<%--            <li>2010-01-20 12:30:30</li>--%>
+<%--            <li>2010-09-08 12:30:30</li>--%>
+<%--            <li>2,000</li>--%>
+<%--            <li class="borderno red"><a href="#">竞拍</a></li>--%>
+<%--        </ul>--%>
+<%--        <ul class="rows">--%>
+<%--            <li><a href="国书" title="">国书</a></li>--%>
+<%--            <li class="list-wd">明国藏书</li>--%>
+<%--            <li>2010-01-20 12:30:30</li>--%>
+<%--            <li>2010-09-08 12:30:30</li>--%>
+<%--            <li>2,000</li>--%>
+<%--            <li class="borderno red"><a href="#">竞拍</a></li>--%>
+<%--        </ul>--%>
+<%--        <ul class="rows even">--%>
+<%--            <li><a href="国书" title="">国书</a></li>--%>
+<%--            <li class="list-wd">明国藏书</li>--%>
+<%--            <li>2010-01-20 12:30:30</li>--%>
+<%--            <li>2010-09-08 12:30:30</li>--%>
+<%--            <li>2,000</li>--%>
+<%--            <li class="borderno red"><a href="#">竞拍</a></li>--%>
+<%--        </ul>--%>
+<%--        <ul class="rows">--%>
+<%--            <li><a href="国书" title="">国书</a></li>--%>
+<%--            <li class="list-wd">明国藏书</li>--%>
+<%--            <li>2010-01-20 12:30:30</li>--%>
+<%--            <li>2010-09-08 12:30:30</li>--%>
+<%--            <li>2,000</li>--%>
+<%--            <li class="borderno red"><a href="#">竞拍</a></li>--%>
+<%--        </ul>--%>
+<%--        <ul class="rows even">--%>
+<%--            <li><a href="国书" title="">国书</a></li>--%>
+<%--            <li class="list-wd">明国藏书</li>--%>
+<%--            <li>2010-01-20 12:30:30</li>--%>
+<%--            <li>2010-09-08 12:30:30</li>--%>
+<%--            <li>2,000</li>--%>
+<%--            <li class="borderno red"><a href="auction.jsp">竞拍</a></li>--%>
+<%--        </ul>--%>
         <div class="page">
             <a href="#" title="">首页</a>
             <a href="#" title="">上一页</a>
