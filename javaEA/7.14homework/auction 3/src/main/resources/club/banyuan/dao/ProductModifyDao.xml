@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.banyuan.dao.ProductModifyDao">
+
+
+  <update id="modifyProduct" parameterType="Product" >
+      update product  set p_name=#{p_name},p_describle=#{p_describle},p_startTime=#{p_startTime},p_endTime=#{p_endTime},p_startingPrice=#{p_startingPrice},p_floorPrice=#{p_floorPrice} where p_id=#{p_id}
+    </update>
+
+  <insert id="insertProduct" parameterType="Product">
+      insert into product * values (null,#{p_name},#{p_describle},#{p_startTime},#{p_endTime},#{p_startingPrice},#{p_floorPrice})
+
+  </insert>
+
+  <delete id="deleteProduct" parameterType="int">
+        delete from product where p_id=#{p_id}
+    </delete>
+
+</mapper>

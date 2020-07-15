@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="club.banyuan.dao.AdminQueryDao">
+
+  <select id="getQueryProduct" parameterType="String" resultType="Product">
+        select * from product
+        <where>
+    <if test="p_name!=null and p_name!=''">
+      and p_name like #{p_name}
+    </if>
+    <if test="p_describle!=null and p_describle!=''">
+      and p_describle =#{p_describle}
+    </if>
+    <if test="p_startTime!=null and p_startTime!=''">
+      and p_startTime =#{p_startTime}
+    </if>
+    <if test="p_endTime!=null and p_endTime!=''">
+      and p_endTime =#{p_endTime}
+    </if>
+    <if test="p_startingPrice>0">
+      and p_startingPrice =#{p_startingPrice}
+    </if>
+    <if test="floorPrice>0">
+     and floorPrice=#{floorPrice}
+    </if>
+
+  </where>
+    </select>
+
+
+</mapper>
